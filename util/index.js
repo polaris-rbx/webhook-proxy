@@ -204,38 +204,38 @@ function validateHook (hookInfo) {
 		} else {
 			throw new Error("'tts' should be a boolean or not provided.")
 		}
-
-		// We do not do files.
-		if (hookInfo.file) {
-			out.file = hookInfo.file;
-		}
-
-		// We also don't validate allowed mentions
-		if (hookInfo.allowed_mentions) {
-			out.allowed_mentions = hookInfo.allowed_mentions;
-		}
-		if (hookInfo.embeds && hookInfo.embeds.length !== 0) {
-			if (hookInfo.embeds.length > 10) {
-				throw new Error("'embeds' array cannot be longer than 10.")
-			}
-			out.embeds = [];
-			for (let counter = 0; counter < hookInfo.embeds.length; counter++) {
-				const embed = hookInfo.embeds[counter];
-
-				const resp = validateEmbed(embed);
-				if (resp.error) {
-					throw new Error(`${counter}: ${resp.error}`);
-				} else {
-					out.embeds.push(embed)
-				}
-			}
-		}
-
-		if (!out.content && !out.file && !out.embeds) {
-			throw new Error("You must supply either 'content', 'file', or 'embeds'.")
-		}
-
 	}
+
+	// We do not do files.
+	if (hookInfo.file) {
+		out.file = hookInfo.file;
+	}
+
+	// We also don't validate allowed mentions
+	if (hookInfo.allowed_mentions) {
+		out.allowed_mentions = hookInfo.allowed_mentions;
+	}
+	if (hookInfo.embeds && hookInfo.embeds.length !== 0) {
+		if (hookInfo.embeds.length > 10) {
+			throw new Error("'embeds' array cannot be longer than 10.")
+		}
+		out.embeds = [];
+		for (let counter = 0; counter < hookInfo.embeds.length; counter++) {
+			const embed = hookInfo.embeds[counter];
+
+			const resp = validateEmbed(embed);
+			if (resp.error) {
+				throw new Error(`${counter}: ${resp.error}`);
+			} else {
+				out.embeds.push(embed)
+			}
+		}
+	}
+
+	if (!out.content && !out.file && !out.embeds) {
+		throw new Error("You must supply either 'content', 'file', or 'embeds'.")
+	}
+
 
 	return out;
 }
