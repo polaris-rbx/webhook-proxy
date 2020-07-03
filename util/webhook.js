@@ -1,6 +1,5 @@
 // Handles webhook & ratelimiting
 const fetch = require("node-fetch");
-//https://ptb.discordapp.com/api/webhooks/716045659815542937/jXaW54ZEyXuGJgrRU3ZIwWsmaa22-xALs6-tfyWkOZ_y86-sWF-NCMSkYvhWQtFuwJQ9
 
 let ratelimitApplied = false;
 const invalidHooks = {};
